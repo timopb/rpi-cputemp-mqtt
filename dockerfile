@@ -1,5 +1,7 @@
 FROM alpine:3.9
 
+ENV PYTHONUNBUFFERED 0
+
 ADD main.py /
 ADD requirements.txt /
 
@@ -14,4 +16,4 @@ RUN apk add --no-cache python3 gcc python3-dev musl-dev && \
     apk del gcc python3-dev musl-dev && \
     pip3 uninstall pip -y
 
-CMD [ "python", "./main.py" ]
+CMD [ "python", "-u", "./main.py" ]
